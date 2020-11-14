@@ -1,0 +1,18 @@
+Na fazenda de Lúcia, a produção de leite não possui 
+nenhum tipo de monitoramento, sendo que muitas vezes 
+esta falta de acompanhamento faz com que ocorra uma
+grande perda de produto, gerando assim prejuízo. 
+Para minimizar estas perdas, Lúcia pretende melhorar 
+o monitoramento da produção leiteira, sendo que sua
+primeira atitude foi codificar as vacas leiteiras, 
+através de um código numérico, assim poderá ter o 
+controle de qual animal já realizou o processo de 
+ordenha. Lúcia está precisando de um sistema para 
+realizar o controle da produção de leite. 
+Após análises, decidiu-se implementar este sistema 
+em Python, pois trata-se de uma linguagem muito 
+poderosa e pode ser utilizada para a análise de dados
+no futuro. De todo o sistema, você ficou responsável
+por implementar a função que realiza a busca do 
+animal a partir do seu código numérico, sendo que a
+técnica ideal para este contexto é a busca binária.
