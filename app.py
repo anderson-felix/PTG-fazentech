@@ -1,22 +1,20 @@
 import sqlite3
 import os
+from sqlite3.dbapi2 import Date
 import time
 
-from binarySearch import BinarySearch as bs
-
-
-# def binarySearch(lista, value):
-#   minimo = 0
-#   maximo = len(lista) - 1
-#   while minimo <= maximo:
-#     meio = (minimo + maximo) // 2
-#     if value < lista[meio]:
-#       maximo = meio - 1
-#     elif value > lista[meio]:
-#       minimo = meio + 1
-#     else:
-#       return True
-#   return False
+def binarySearch(lista, value):
+  minimo = 0
+  maximo = len(lista) - 1
+  while minimo <= maximo:
+    meio = (minimo + maximo) // 2
+    if value < lista[meio]:
+      maximo = meio - 1
+    elif value > lista[meio]:
+      minimo = meio + 1
+    else:
+      return True
+  return False
 
 def Search(query):
   idList = []
@@ -26,6 +24,7 @@ def Search(query):
 
 # MAIN
 program = -1
+dateCow = Date.today()
 
 while program != 0:
   conn = sqlite3.connect("./fazenda.db")# confira se o seu diretório está correto
@@ -33,8 +32,6 @@ while program != 0:
   os.system('clear')
   print('\t____________FazenTech____________')
   print('\t___________COW CONTROL___________')
-
-
 
   program = int(input("""
   Digite o número correspondente a ação desejada.
@@ -51,12 +48,18 @@ while program != 0:
     print('\nSaindo...')
     time.sleep(1)
     os.system('clear')
+    
 
   elif program == 1:
     os.system('clear')
     print('\n\n\t____________REGISTROS____________ \n')
-    for id, ordenha, ult_ordenha in cursor.execute('SELECT id, ordenhada, ult_ordenha FROM Vaca'):
-      print(id, ordenha, ult_ordenha)
+    for id, ordenha, ult_ordenha, data_cadastro in cursor.execute('SELECT id, ordenhada, ult_ordenha, data_cadastro FROM Vaca'):
+      print(f"""
+      \tID : {id}  
+      Ordenhada:{ordenha} 
+      Ultima ordenha:{ult_ordenha} 
+      Data de cadastro:{data_cadastro}
+      ________________________________\n""")
     os.system('pause')
 
   elif program == 2:
@@ -66,10 +69,10 @@ while program != 0:
 
     if ordenha == 'S':
       ult_ordenha = str(input('\nInforme a data da última ordenha -> ')).strip()
-      cursor.execute(f'INSERT INTO Vaca (ordenhada, ult_ordenha) VALUES ("S","{ult_ordenha}")')
+      cursor.execute(f'INSERT INTO Vaca (ordenhada, ult_ordenha, data_cadastro) VALUES ("S","{ult_ordenha}","{dateCow}")')
 
     elif ordenha == 'N':
-      cursor.execute(f'INSERT INTO Vaca (ordenhada, ult_ordenha) VALUES ("N",null)')
+      cursor.execute(f'INSERT INTO Vaca (ordenhada, ult_ordenha, data_cadastro) VALUES ("N",null,"{dateCow}")')
 
     else:
       print('\nComando incorreto!\n')

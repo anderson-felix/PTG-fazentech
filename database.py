@@ -7,7 +7,8 @@ createTable = """
   CREATE TABLE Vaca (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     ordenhada TEXT CHECK (ordenhada IN ('S','N')) NOT NULL DEFAULT 'M',
-    ult_ordenha TEXT default NULL
+    ult_ordenha TEXT default NULL,
+    data_cadastro TEXT NOT NULL
   );
 """
 
